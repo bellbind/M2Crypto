@@ -450,3 +450,10 @@ int rsa_write_key_der(RSA *rsa, BIO *bio) {
 }
 %}
 
+%threadallow rsa_write_pub_key_der;
+%inline %{
+int rsa_write_pub_key_der(RSA *rsa, BIO *bio) {
+    return i2d_RSA_PUBKEY_bio(bio, rsa);
+}
+%}
+

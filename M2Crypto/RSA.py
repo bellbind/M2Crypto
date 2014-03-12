@@ -157,6 +157,25 @@ class RSA:
         bio = BIO.openfile(file, 'wb')
         return m2.rsa_write_pub_key(self.rsa, bio._ptr())
 
+    def save_pub_key_der_bio(self, bio):
+        """
+        Save the public key to an M2Crypto.BIO.BIO object in DER format.
+
+        @type bio: M2Crypto.BIO.BIO
+        @param bio: M2Crypto.BIO.BIO object to save key to.
+        """
+        return m2.rsa_write_pub_key_der(self.rsa, bio._ptr())
+
+    def save_pub_key_der(self, file):
+        """
+        Save the public key to a file in DER format.
+
+        @type file: string
+        @param file: Name of file to save key to.
+        """
+        bio = BIO.openfile(file, 'wb')
+        return m2.rsa_write_pub_key_der(self.rsa, bio._ptr())
+
     def check_key(self):
         return m2.rsa_check_key(self.rsa)
 
